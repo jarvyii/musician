@@ -70,11 +70,11 @@ GO
 
 -- Inserting rows to the table  [HR].[Departments]
 INSERT INTO [HR].[Departments] 
-	(DptName) VALUES ('Accounting'),
-					 ( 'Service'),
-					 ('Technical'),
-					 ('Maintnance'),
-					 ('HH-RR')
+	(DptName) VALUES ( 'Accounting' ),
+					 ( 'Service' ),
+					 ( 'Technical' ),
+					 ( 'Maintnance' ),
+					 ( 'HH-RR' )
 GO
 INSERT [HR].[Employees] 
  ([FirstName], [MidleName], [LastName], [DepartmentId], [PhoneNumber], [Email], [AddressLine], [City], [State], [PostalCode], [Country], [DOB]) 
@@ -743,14 +743,15 @@ GO
 --This script will have to also DELETE any records that reference these rows. 
 --Both of the DELETE statements need to be wrapped in a single TRANSACTION.
 BEGIN TRANSACTION
-DELETE FROM [TECH].[Positions]
-where PositionId = 6
 
 DELETE FROM [TECH].Groupstructure
-WHERE PositionId = 6
+WHERE PositionId = 8
 
 DELETE FROM [TECH].Groupbandmembers
-WHERE PositionId = 6
+WHERE PositionId = 8
+
+DELETE FROM [TECH].[Positions]
+where PositionId = 8
 
 commit
 GO
@@ -817,7 +818,7 @@ SELECT d.[DptName] AS [Department], Count(*)
 FROM [HR].[Departments] d
 JOIN [HR].[Employees] e
 ON d.DepartmentId = e.DepartmentId
-WHERE (e.FirstName = 'Joh') and (e.[State] = 'Washingtonn ')
+WHERE (e.FirstName = 'Joh') and (e.[State] = 'Washington')
 GROUP BY d.[DptName]
 ORDER BY d.[DptName]
 GO
